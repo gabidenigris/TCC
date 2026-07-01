@@ -15,13 +15,13 @@ TCC/
 │    └── overleaf (in process)
 │  
 ├── referencial
-│    └── Baker, et al. (2025) "Difference-in-Differences Designs: A Practitioner’s Guide".pdf
+│    ├── Baker, et al. (2025) "Difference-in-Differences Designs: A Practitioner’s Guide".pdf
 │    └── Fajgelbaum, et al. (2025) "The Value of de Minimis Imports".pdf
 │
 ├── script
 │    ├── dados_RAIS.R
 │    ├── dados_camex.R
-│    └── dados_PRC.R
+│    └── did_2x2.R
 │ 
 ├── output/
 │    ├── grafico_1.png
