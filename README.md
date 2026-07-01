@@ -12,20 +12,20 @@ TCC/
 ├── README.md
 │
 ├── Redação
-│    └── [overleaf]()
+│    └── overleaf
 │
-├── (script)[]
+├── script
 │    ├── dados_RAIS.R
 │    ├── dados_camex.R
 │    └── dados_PRC.R
 │ 
-├── (output/)[]
+├── output/
 │    ├── grafico_1.png
 │    ├── grafico_2.png
 │    ├── tabela_1.png
 │    └── tabela_2.png
 │
-└── (data/)[]
+└── data/
      ├── rais_2025.csv
      ├── camex.csv
      ├── PMC.csv
