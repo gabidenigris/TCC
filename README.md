@@ -12,8 +12,12 @@ TCC/
 ├── README.md
 │
 ├── Redação
-│    └── overleaf
-│
+│    └── overleaf (in process)
+│  
+├── Referencial
+│    └── Baker, et al. (2025) "Difference-in-Differences Designs: A Practitioner’s Guide"
+│    └── Fajgelbaum, et al. (2025) "The Value of de Minimis Imports"
+│ 
 ├── script
 │    ├── dados_RAIS.R
 │    ├── dados_camex.R
@@ -26,7 +30,7 @@ TCC/
 │    └── tabela_2.png
 │
 └── data/
-     ├── rais_2025.xlsx
+     ├── rais.xlsx
      ├── camex.xlsx
      ├── PMC.xlsx
      └── PRC.xlsx
