@@ -26,10 +26,10 @@ TCC/
 │    └── tabela_2.png
 │
 └── data/
-     ├── rais_2025.csv
-     ├── camex.csv
-     ├── PMC.csv
-     └── PRC.csv
+     ├── rais_2025.xlsx
+     ├── camex.xlsx
+     ├── PMC.xlsx
+     └── PRC.xlsx
             
 ```
 
