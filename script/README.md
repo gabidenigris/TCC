@@ -1,16 +1,18 @@
 # Metodologia
 
-Aqui estou desenvolvendo as etapas do processo. Quais perguntas devem ser respondidas e como será o desenho econométrico. 
-
+Aqui estou desenvolvendo as etapas do processo. Quais perguntas devem ser respondidas e como será o desenho econométrico.
 
 ## Perguntas:
 
-**1.** Qual o impacto causal do imposto de importação 'Taxa das Blusinhas' no emprego de estabelecimentos que competem com importações de baixo valor (até US$50)?
-  Referencial: Difference-in-Differences Designs: A Practitioner's Guide
+**1.** Qual o impacto causal do imposto de importação 'Taxa das Blusinhas' no emprego formal de estabelecimentos que competem com importações de baixo valor (até US$50)?
 
-  ### **a.** Definição de tratamento e controle      
-  → Dados: [RAIS Estabelecimentos   ](https://basedosdados.org/dataset/3e7c4d58-96ba-448e-b053-d385a829ef00?table=86b69f96-0bfe-45da-833b-6edc9a0af213)       
-  → CNAE 2.0: [consulta de subclasses](https://cnae.ibge.gov.br/documentacao/documentacao-cnae-2-0.html)           
+Referencial metodológico: Baker, Callaway, Cunningham, Goodman-Bacon e Sant'Anna (2025), "Difference-in-Differences Designs: A Practitioner's Guide". Referencial para seleção de setores expostos: Fajgelbaum e Khandelwal (2025), "The Value of de Minimis Imports".
+
+### **a.** Definição de tratamento e controle
+
+→ Dados: [RAIS Estabelecimentos](https://basedosdados.org/dataset/3e7c4d58-96ba-448e-b053-d385a829ef00?table=86b69f96-0bfe-45da-833b-6edc9a0af213)
+
+→ CNAE 2.0: [consulta de subclasses](https://cnae.ibge.gov.br/documentacao/documentacao-cnae-2-0.html)
 
 ### Seleção das CNAEs: tratado e controle
 
@@ -67,4 +69,31 @@ Critério: setores da indústria de transformação cujo produto final compete c
 | 27 (demais grupos) | Geradores, baterias, distribuição de energia, linha branca | B2B ou produto pesado, fora do canal de remessa |
 | 22.29, 25.50, 25.93 | Ver acima | Retirados dos controles por contaminação ou regulação |
 
-  
+### **b.** Decisões de desenho (fechadas com o orientador)
+
+| Decisão | Escolha | Observação |
+|---|---|---|
+| Variável de tratamento | Binária (tratado vs. controle) | Medida contínua de exposição (participação de remessas via Comex Stat) fica como robustez dose-resposta |
+| Evento | Taxa de 20% em 1/ago/2024 (MP 1.236/2024) | PRC/ICMS (ago/2023) não é o evento; será discutido como possível antecipação parcial. Zeragem em mai/2026 delimita a janela pós |
+| Janela do painel | 2021 a 2025 | Extensão do pré para permitir teste de pré-tendências, buscando reduzir contaminação da pandemia. 2021 interpretado com cautela (recuperação pós-covid) |
+| Desfecho | Emprego formal (RAIS) | Principal: vínculos ativos. Secundários: número de estabelecimentos (margem extensiva) e salário médio. Limitação: alta informalidade na confecção; efeito estimado é sobre o emprego formal |
+
+Como a RAIS é foto de 31 de dezembro, 2024 já é ano tratado (5 meses de vigência). Anos pré: 2021, 2022, 2023. Anos pós: 2024, 2025 (condicional à disponibilidade da RAIS 2025).
+
+### **c.** Estratégia de identificação
+
+Com evento único e adoção simultânea (todos os tratados em ago/2024), o desenho é um DiD 2x2 com estudo de eventos. Não há adoção escalonada, então os problemas de TWFE apontados por Goodman-Bacon não se aplicam. Especificação: TWFE com leads e lags (event study), efeitos fixos de setor x UF e de ano, erros-padrão clusterizados no nível do setor, com wild cluster bootstrap dada a quantidade reduzida de clusters.
+
+Hipótese de identificação: tendências paralelas entre tratados e controles na ausência da taxa. Evidência de plausibilidade: coeficientes dos leads (2021-2023) próximos de zero.
+
+Primeiro estágio: documentar, com dados do Comex Stat (MDIC), que as importações da cesta afetada caíram após ago/2024. Sem primeiro estágio, um efeito nulo no emprego não é interpretável.
+
+## Roteiro
+
+- [x] 1. Definição da pergunta, tratado, controle e decisões de desenho
+- [ ] 2. Montagem do painel RAIS 2021-2025 (ano x UF x setor), com filtros de CNAE da tabela acima
+- [ ] 3. Primeiro estágio no Comex Stat (importações da cesta afetada antes e depois da taxa)
+- [ ] 4. Estatísticas descritivas e gráfico de pré-tendências (2021-2023)
+- [ ] 5. Estimação principal: event study TWFE, wild cluster bootstrap
+- [ ] 6. Robustez: tratados de extensão, controle com e sem divisões 10 e 24, exclusão da ZFM, dose-resposta com medida contínua de exposição
+- [ ] 7. Redação dos resultados e limitações
