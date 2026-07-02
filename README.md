@@ -7,7 +7,7 @@ Orientador: **Prof. Raphael Rocha Gouvea, PhD**
 
 ## Resumo
  
-Este trabalho investiga o impacto econômico da "Taxa das Blusinhas" (tarifa de importação de 20% sobre remessas de e-commerce de baixo valor abaixo de US$ 50), sobre o emprego formal de estabelecimentos afetados pela concorrencia internacional. A análise utiliza dados em painel da RAIS via BigQuery e um desenho de diferenças em diferenças (difference-in-differences) para estimar o efeito causal da política sobre os estabelecimentos afetados.
+Este trabalho investiga o impacto econômico da "Taxa das Blusinhas" (tarifa de importação de 20% sobre remessas de e-commerce de baixo valor abaixo de US$ 50), sobre o emprego formal de estabelecimentos afetados pela concorrência internacional. A análise utiliza dados em painel da RAIS via BigQuery e um desenho de diferenças em diferenças (difference-in-differences) para estimar o efeito causal da política sobre os estabelecimentos afetados.
 
 **Principais referências metodológicas:**
 - Baker, Callaway, Cunningham, Goodman-Bacon & Sant'Anna (2025). *Difference-in-Differences Designs: A Practitioner's Guide*.
