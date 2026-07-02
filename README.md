@@ -1,8 +1,7 @@
 # Trabalho de Conclusão de Curso
 
-**Orientador:** Prof. Raphael Gouvea, PhD.
 
-**Pergunta:** a 'Taxa das Blusinhas', ao encarecer o importado de baixo valor, protegeu os setores domésticos que competem com esses produtos, e isso aparece no emprego formal e outras variáveis? 
+**Pergunta:** a 'Taxa das Blusinhas', ao encarecer o importado de baixo valor (até US$50), protegeu os setores domésticos que competem com esses produtos, e isso aparece no emprego formal e outras variáveis? 
 
 
 ## Estrutura do repositório
@@ -19,9 +18,8 @@ TCC/
 │    └── Fajgelbaum, et al. (2025) "The Value of de Minimis Imports".pdf
 │
 ├── script
-│    ├── dados_RAIS.R
-│    ├── dados_camex.R
-│    └── did_2x2.R
+│    └── metodologia.md
+│         └── did_2x2.R
 │ 
 ├── output/
 │    ├── grafico_1.png
@@ -32,7 +30,6 @@ TCC/
 └── data/
      ├── rais.xlsx
      ├── camex.xlsx
-     ├── PMC.xlsx
      └── PRC.xlsx
             
 ```
