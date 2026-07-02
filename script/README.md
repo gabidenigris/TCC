@@ -29,3 +29,38 @@ Aqui estou desenvolvendo as etapas do processo. Quais perguntas devem ser respon
 | Controle | Divisão 25 (exceto classes 25.50 e 25.93) | Fabricação de produtos de metal, exceto máquinas | Estruturas metálicas, caldeiraria e forjaria atendem construção e indústria doméstica. Excluem-se 25.50 (armas) por regime regulatório próprio e 25.93 (artefatos de metal para uso doméstico e pessoal — cutelaria, panelas) por sobreposição parcial com o basket de remessas. |
 | Excluído (zona de contaminação) | Grupos 13.1–13.4; 15.1; 15.4; 32.5; demais de 26 e 27 | Fiação, tecelagem e acabamento têxtil; curtimento; partes de calçados; instrumentos médico-odontológicos; demais eletrônicos e elétricos | Setores com exposição ambígua: ou são fornecedores upstream dos tratados (efeito indireto via demanda derivada, violando SUTVA/no-spillover entre grupos), ou misturam consumo e B2B sem separação limpa no CNAE. O guia de DiD recomenda excluir unidades de status ambíguo em vez de forçar sua classificação, preservando a interpretação do parâmetro causal (ATT). |
 | Sensibilidade apenas | Divisões 10 e 24 | Produtos alimentícios (10); metalurgia (24) | Divisão 10: perecíveis fora do canal de remessa, mas sujeita a choques próprios de demanda/commodities. Divisão 24: candidata a controle, porém contaminada por intervenções simultâneas de política comercial no aço em 2024 — choque coincidente que violaria a comparabilidade exigida pelo desenho. Usar apenas como checagem de robustez do grupo de controle. |
+
+
+### b. Parâmetro-alvo e hipóteses de identificação
+
+### Unidade e notação
+A unidade de análise é a célula **UF × indústria (CNAE)**, observada anualmente na RAIS (foto de 31/dez), para $t = 2019, \dots, 2025$. 
+
+O tratamento é binário: 
+* $D_i = 1$ se a célula pertence aos setores tratados (competidores das importações de baixo valor);
+* $D_i = 0$ se pertence ao controle. 
+
+A vigência da taxa é **01/08/2024**; logo, a primeira observação pós-tratamento é a RAIS de dezembro/2024, ou seja, $g = 2024$. O desfecho $Y_{i,t}$ é o emprego formal (vínculos ativos).
+
+### Parâmetro-alvo
+O efeito médio do tratamento sobre os tratados em cada ano pós-vigência é definido como:
+
+$$ATT(t) = E\left[\,Y_{i,t}(1) - Y_{i,t}(0) \mid D_i = 1\,\right], \quad t \geq 2024$$
+
+Em palavras: quanto o emprego formal dos setores tratados difere, em média, do que teria sido sem a taxa. O desfecho potencial $Y_{i,t}(0)$ nunca é observado para os tratados após 2024 — é isso que as hipóteses abaixo permitem reconstruir.
+
+### Hipótese 1 — Não-antecipação (NA)
+A taxa não afeta o emprego antes da vigência: 
+
+$$Y_{i,t} = Y_{i,t}(0) \quad \text{para todo } t < 2024$$
+
+Como o anúncio ocorreu em junho/2024 e a RAIS pré-tratamento mais recente é de dezembro/2023, o desenho acomoda naturalmente eventual antecipação entre anúncio e vigência — ela cai dentro do ano de tratamento, não do pré-período.
+
+### Hipótese 2 — Tendências paralelas (PT)
+Na ausência da taxa, o emprego formal dos setores tratados e de controle teria evoluído, em média, da mesma forma:
+
+$$E\left[Y_{i,t}(0) - Y_{i,2023}(0) \mid D_i = 1\right] = E\left[Y_{i,t}(0) - Y_{i,2023}(0) \mid D_i = 0\right], \quad t \geq 2024$$
+
+As pré-tendências (2019–2023) servem como evidência de falsificação dessa hipótese — não como a hipótese em si.
+
+> **Observação de escopo:** O ATT identificado refere-se ao emprego formal (RAIS) e o pós-período efetivo é dez/2024 e dez/2025, já que a alíquota foi zerada em maio/2026.
