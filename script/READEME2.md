@@ -6,11 +6,11 @@ Esta página documenta, passo a passo, o desenho da pesquisa do meu TCC. A ideia
 
 Até 2024, compras internacionais de até US$ 50 (as "remessas de baixo valor", típicas de sites como Shein, Shopee e AliExpress) entravam no Brasil sem Imposto de Importação. Em 1º de agosto de 2024, entrou em vigor a chamada **Taxa das Blusinhas** (MP 1.236/2024): um Imposto de Importação de 20% sobre essas remessas. Na prática, o produto importado barato ficou mais caro da noite para o dia.
 
-## A pergunta da pesquisa
+## A pergunta inicial
 
-**Qual o impacto causal da Taxa das Blusinhas sobre o emprego formal nas indústrias brasileiras que competem com essas importações?**
+1. **Qual o impacto causal da Taxa das Blusinhas sobre o emprego formal nas indústrias brasileiras que competem com essas importações?**
 
-A intuição econômica: se a blusinha importada ficou 20% mais cara, parte dos consumidores pode migrar para o produto nacional. Se isso acontecer, as fábricas brasileiras de roupas, calçados, bijuterias e afins deveriam vender mais e, possivelmente, **contratar mais**. É esse efeito no emprego que quero medir.
+**A intuição econômica:** se a blusinha importada ficou 20% mais cara, parte dos consumidores pode migrar para o produto nacional. Se isso acontecer, as fábricas brasileiras de roupas, calçados, bijuterias e afins deveriam vender mais e, possivelmente, **contratar mais**. É esse efeito no emprego que quero medir.
 
 A palavra "causal" é o ponto central. Não basta ver se o emprego na confecção subiu depois de agosto de 2024: ele poderia ter subido (ou caído) por outros motivos, como o ciclo econômico, os juros ou o câmbio. Preciso separar o efeito da taxa de tudo o que estava acontecendo ao mesmo tempo.
 
@@ -28,7 +28,7 @@ Referencial metodológico: Baker, Callaway, Cunningham, Goodman-Bacon e Sant'Ann
 ## Dados
 
 - **Emprego**: [RAIS Estabelecimentos](https://basedosdados.org/dataset/3e7c4d58-96ba-448e-b053-d385a829ef00?table=86b69f96-0bfe-45da-833b-6edc9a0af213), registro administrativo de todos os vínculos formais de trabalho no Brasil, por estabelecimento e por ano (foto de 31 de dezembro).
-- **Classificação setorial**: [CNAE 2.0](https://cnae.ibge.gov.br/documentacao/documentacao-cnae-2-0.html), o código que identifica a atividade de cada estabelecimento.
+- **Classificação setorial**: [CNAE 2.0](https://cnae.ibge.gov.br/documentacao/documentacao-cnae-2-0.html), consultado do código que identifica a atividade de cada estabelecimento.
 
 ## Seleção das CNAEs: quem é tratado e quem é controle
 
@@ -70,26 +70,8 @@ Setores ambíguos não entram em nenhum dos grupos: ficam em uma **zona de exclu
 | 22 (exceto 22.29) | Borracha e plástico | Fora do canal. Exclui-se 22.29 (artefatos de plástico) por conter utilidades domésticas que entram por remessa |
 | 25 (exceto 25.50 e 25.93) | Produtos de metal | Vendas majoritariamente entre empresas. Exclui-se 25.93 (uso doméstico e pessoal, cesta de remessa) e 25.50 (bélico, regulado) |
 
-### Sensibilidade (entram apenas em testes de robustez do controle)
 
-| CNAE | Descrição | Justificativa |
-|---|---|---|
-| 10 (divisão) | Alimentos | Não entra por remessa, mas é um setor enorme e ligado ao ciclo de commodities. Testar resultados com e sem |
-| 24 (divisão) | Metalurgia | Recebeu política comercial própria no mesmo período (medidas contra o aço chinês em 2024), o que contaminaria a comparação |
-
-### Zona de exclusão (nem tratado, nem controle)
-
-| CNAE | Descrição | Motivo da exclusão |
-|---|---|---|
-| 13.1 a 13.4 | Fiação, tecelagem, acabamentos têxteis | Vendem insumos para a própria confecção. Se a taxa ajuda a confecção, esses setores também podem ser beneficiados indiretamente, o que torna a classificação ambígua |
-| 15.1 | Curtimento de couro | Insumo intermediário, fortemente exportador |
-| 15.4 | Partes para calçados | Insumo da cadeia calçadista |
-| 32.5 | Instrumentos médicos e odontológicos | Vendido a empresas e regulado pela Anvisa, não entra por remessa. Peso grande de emprego na divisão 32 |
-| 26 (demais grupos) | Componentes, informática, comunicação, instrumentos de medida | Vendas entre empresas ou produção dominada pela ZFM e pela Lei de Informática, que mudaram no período |
-| 27 (demais grupos) | Geradores, baterias, distribuição de energia, linha branca | Vendas entre empresas ou produto pesado demais para remessa |
-| 22.29, 25.50, 25.93 | Ver acima | Retirados dos controles por contaminação ou regulação |
-
-## Decisões de desenho (fechadas com o orientador)
+## Decisões de desenho
 
 | Decisão | Escolha | Observação |
 |---|---|---|
@@ -100,16 +82,14 @@ Setores ambíguos não entram em nenhum dos grupos: ficam em uma **zona de exclu
 
 Como a RAIS é uma foto de 31 de dezembro, o ano de 2024 já conta como tratado (a taxa vigorou de agosto a dezembro). Anos pré: 2021, 2022, 2023. Anos pós: 2024 e 2025 (este último condicional à publicação da RAIS).
 
-## Estratégia de identificação (como o efeito é estimado)
+## Estratégia de identificação
 
-Todos os setores tratados recebem a taxa ao mesmo tempo (agosto de 2024). Isso simplifica o desenho: é um DiD clássico de dois grupos e dois períodos, estendido para vários anos no formato de **estudo de eventos** (event study). Em vez de estimar um único efeito médio, estimo um coeficiente para cada ano, medindo a diferença entre tratados e controles em relação a 2023 (o último ano antes da taxa).
+Todos os setores tratados recebem a taxa ao mesmo tempo (agosto de 2024). Isso simplifica o desenho: é um DiD clássico de dois grupos e dois períodos, estendido para vários anos no formato de event study. Em vez de estimar um único efeito médio, estimo um coeficiente para cada ano, medindo a diferença entre tratados e controles em relação a 2023 (o último ano antes da taxa).
 
 Isso produz dois resultados em um só gráfico:
 
-1. **Coeficientes dos anos pré (2021 e 2022)**: se forem próximos de zero, os dois grupos evoluíam de forma parecida antes da taxa. É a evidência de plausibilidade da hipótese central do método, chamada de **tendências paralelas**: a suposição de que, sem a taxa, os tratados teriam seguido a mesma trajetória dos controles.
+1. **Coeficientes dos anos pré (2021 e 2022)**: se forem próximos de zero, os dois grupos evoluíam de forma parecida antes da taxa. É a evidência de hipótese de **tendências paralelas**: a suposição de que, sem a taxa, os tratados teriam seguido a mesma trajetória dos controles.
 2. **Coeficientes dos anos pós (2024 e 2025)**: o efeito estimado da taxa sobre o emprego formal.
-
-Detalhes técnicos da estimação: modelo com efeitos fixos de setor x UF (controla características fixas de cada setor em cada estado) e de ano (controla choques nacionais comuns, como juros e câmbio). Erros-padrão agrupados por setor, com correção de wild cluster bootstrap, adequada quando o número de setores é pequeno. Como não há adoção escalonada (ninguém é tratado antes ou depois dos demais), os problemas recentes apontados na literatura de DiD com TWFE não se aplicam aqui.
 
 **Primeiro estágio**: antes de olhar o emprego, vou documentar com dados do Comex Stat (MDIC) que as importações da cesta afetada de fato caíram após agosto de 2024. Esse passo é essencial: se as importações não caíram, não há razão para esperar efeito no emprego, e um resultado nulo não seria interpretável.
 
