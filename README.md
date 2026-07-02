@@ -1,4 +1,4 @@
-# Trabalho de Conclusão de Curso 
+# Trabalho de Conclusão de Curso (in progress)
 
 Bacharelado em Economia — Instituto Brasileiro de Mercado de Capitais (Ibmec Brasília)
 Autora: **Gabriela De Nigris**
