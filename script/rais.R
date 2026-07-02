@@ -1,3 +1,9 @@
+# =============================================================================
+# Baixando dados de empregos formais em estabelecimentos, da RAIS (2019-2025)
+# Última atualização: julho/2026
+# Fonte de dados: RAIS - Base dos Dados
+# =============================================================================
+
 install.packages("basedosdados")
 
 library(basedosdados)
