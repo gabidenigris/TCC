@@ -1,5 +1,17 @@
-# Trabalho de Conclusão de Curso
+# Trabalho de Conclusão de Curso 
 
+Bacharelado em Economia — Instituto Brasileiro de Mercado de Capitais (Ibmec Brasília)
+Autora: **Gabriela De Nigris**
+Orientador: **Prof. Raphael Rocha Gouvea, PhD**
+2026
+
+## Resumo
+ 
+Este trabalho investiga o impacto econômico da "Taxa das Blusinhas" (tarifa de importação de 20% sobre remessas de e-commerce de baixo valor abaixo de US$ 50), sobre o emprego formal de estabelecimentos afetados pela concorrencia internacional. A análise utiliza dados em painel da RAIS via BigQuery e um desenho de diferenças em diferenças (difference-in-differences) para estimar o efeito causal da política sobre os estabelecimentos afetados.
+
+**Principais referências metodológicas:**
+- Baker, Callaway, Cunningham, Goodman-Bacon & Sant'Anna (2025). *Difference-in-Differences Designs: A Practitioner's Guide*.
+- Fajgelbaum, Khandelwal, et al. (2025). *The Value of de Minimis Imports*.
 
 ## Estrutura do repositório
 
