@@ -1,8 +1,8 @@
 # Trabalho de Conclusão de Curso (in progress)
 
-Bacharelado em Economia — Instituto Brasileiro de Mercado de Capitais (Ibmec Brasília)
-Autora: **Gabriela De Nigris**
-Orientador: **Prof. Raphael Rocha Gouvea, PhD**
+Bacharelado em Economia — Instituto Brasileiro de Mercado de Capitais (Ibmec Brasília)      
+Autora: **Gabriela De Nigris**        
+Orientador: **Prof. Raphael Rocha Gouvea, PhD**        
 2026
 
 ## Resumo
