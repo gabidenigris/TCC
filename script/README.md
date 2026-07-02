@@ -1,11 +1,19 @@
 # Metodologia
 
-Perguntas:
-
-1. Qual o impacto causal do imposto de importação 'Taxa das Blusinhas' no emprego de extabelecimentos que competem com importações de baixo valor (até US$50)
-→ Dados: RAIS 2023-2025
-→ Referencial: Difference-in-Differences Designs: A Practitioner's Guide
+Aqui estou desenvolvendo as etapas do processo. Quais perguntas devem ser respondidas e como será o desenho econometrico. 
 
 
-2. 
+## Perguntas:
 
+**1.** Qual o impacto causal do imposto de importação 'Taxa das Blusinhas' no emprego de estabelecimentos que competem com importações de baixo valor (até US$50)?
+  Referencial: Difference-in-Differences Designs: A Practitioner's Guide
+
+  ### **a.** Definição de tratamento e controle      
+  → Dados: RAIS Estabelecimentos    
+  → CNAE 2.0: [consulta de subclasses](https://cnae.ibge.gov.br/documentacao/documentacao-cnae-2-0.html)      
+
+
+
+
+
+  
