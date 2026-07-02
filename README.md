@@ -20,7 +20,7 @@ TCC/
 ├── README.md
 │
 ├── redação
-│    └── overleaf (in process)
+│    └── [pdf do trabalho final] (in process)
 │  
 ├── referencial
 │    ├── Baker, et al. (2025) "Difference-in-Differences Designs: A Practitioner’s Guide".pdf
