@@ -18,8 +18,10 @@ TCC/
 │    └── Fajgelbaum, et al. (2025) "The Value of de Minimis Imports".pdf
 │
 ├── script
-│    └── metodologia.md
-│         └── did_2x2.R
+│    ├── README.md
+|    ├── rais_estabeleciemntos.R
+|    ├── camex.R
+│    └── did_2x2.R
 │ 
 ├── output/
 │    ├── grafico_1.png
