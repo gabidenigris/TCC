@@ -1,6 +1,5 @@
 # =============================================================================
-# TCC — Impacto da Taxa das Blusinhas sobre o Comércio Brasileiro
-# Script: dados_camex.R
+# Baixando dados de importação do CAMEX (2022-2025)
 # Última atualização: maio/2026
 # Fonte de dados: CAMEX/MDIC — Comex Stat (base bruta por NCM)
 # =============================================================================
