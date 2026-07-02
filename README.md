@@ -1,9 +1,6 @@
 # Trabalho de Conclusão de Curso
 
 
-**Pergunta:** a 'Taxa das Blusinhas', ao encarecer o importado de baixo valor (até US$50), protegeu os setores domésticos que competem com esses produtos, e isso aparece no emprego formal e outras variáveis? 
-
-
 ## Estrutura do repositório
 
 ```
