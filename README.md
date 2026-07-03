@@ -1,4 +1,4 @@
-# Trabalho de Conclusão de Curso (in progress)
+# Trabalho de Conclusão de Curso (em andamento)
 
 Bacharelado em Economia — Instituto Brasileiro de Mercado de Capitais (Ibmec Brasília)      
 Autora: **Gabriela De Nigris**        
