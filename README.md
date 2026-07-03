@@ -19,7 +19,7 @@ Este trabalho investiga o impacto econômico da "Taxa das Blusinhas" (tarifa de 
 TCC/
 ├── README.md
 │
-├── redação/      # PDF do trabalho (Overleaf, em andamento)
+├── redação/      # (em andamento)
 │  
 ├── referencial
 │    ├── Baker, et al. (2025) "Difference-in-Differences Designs: A Practitioner’s Guide".pdf
