@@ -38,11 +38,11 @@ Aqui estou desenvolvendo as etapas do processo. Quais perguntas devem ser respon
 ### **b. Parâmetro-alvo e hipóteses de identificação**
  
 #### Unidade e notação
-A unidade de análise é a célula *UF × classe CNAE* (indústria de transformação, 4 dígitos), observada anualmente na RAIS (foto de 31/dez), para $t = 2019, \dots, 2025$.
+A unidade de análise é a célula *UF × classe CNAE*, observada anualmente na RAIS (foto de 31/dez), para $t = 2019, \dots, 2025$. (vamos tomar cuidado com os anos da pandemia)
 O tratamento é binário:
 * $D_i = 1$ se a célula pertence aos setores tratados (produtores domésticos de bens substitutos das importações de baixo valor);
 * $D_i = 0$ se pertence ao controle (setores fora do canal de remessas internacionais).
-A vigência da taxa é *01/08/2024*; logo, a primeira observação pós-tratamento é a RAIS de dezembro/2024, ou seja, $g = 2024$ (coorte única, adoção simultânea). O desfecho $Y_{i,t}$ é o logaritmo do emprego formal (vínculos ativos em 31/12) da célula.
+A vigência da taxa é *01/08/2024*; logo, a primeira observação pós-tratamento é a RAIS de dezembro/2024, ou seja, $g = 2024$ (adoção simultânea). O desfecho $Y_{i,t}$ é o logaritmo do emprego formal (vínculos ativos em 31/12) da célula.   
  
 #### Parâmetro-alvo
 O efeito médio do tratamento sobre os tratados em cada ano pós-vigência:
@@ -54,7 +54,7 @@ Em palavras: quanto o emprego formal dos setores tratados difere, em média, do 
 <br>
 
 
-### **c. Painel construído (script `01_painel_did.R`)**
+### **c. Painel construído (script `painel_rais.R`)**
  
 Painel balanceado UF × classe CNAE × ano, agregado em SQL no BigQuery a partir de `microdados_vinculos`. Dimensões: 21.777 linhas, 141 classes CNAE, 27 UFs válidas, 2019 a 2025.
  
@@ -67,17 +67,19 @@ Estrutura (exemplo de uma célula tratada e uma de controle):
 | 2023 | SC | 16226 | Fabricação de esquadrias de madeira | controle | FALSE | FALSE | 9.104 | 21.870.400 | 2.402,29 |
 | 2024 | SC | 16226 | Fabricação de esquadrias de madeira | controle | FALSE | TRUE | 9.377 | 22.905.100 | 2.442,69 |
  
-<br>
 
 <br>
 
 
 ## **d. Teste de tendências paralelas (script 02_tendencias_paralelas.R) — EM ANDAMENTO**
 
-Próximos passos
+Amostra principal: núcleo tratado vs controle, células com emprego positivo em todos os anos (as cnaes classificadas como "extensiva" vão para robustez).       
+
+
+<br>
+
+Ideias de próximos passos
 
 - Rodar o event study e avaliar os coeficientes pré (atenção esperada ao ruído de 2020, Covid).
-- Análise de sensibilidade de Rambachan e Roth calibrada pelo maior pré-trend estimado.
-- Robustez: grupo de extensão como tratados, divisões 10 e 24 como controle alternativo, exclusão da Zona Franca de Manaus, placebos em setores não afetados e em datas falsas, margem extensiva via asinh.
-- Primeiro estágio: documentação da queda das importações de remessas (Comex Stat) após agosto de 2024.
+- Documentação da queda das importações de remessas (Comex Stat) após agosto de 2024, já que podemos ver mês a mês, além do relatório de remessas de baixo valor da RFB sobre o PRC. 
 - Variáveis adicionais: massa salarial real (deflacionada pelo IPCA) e salário médio.
