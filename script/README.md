@@ -7,6 +7,9 @@ Aqui estou desenvolvendo as etapas do processo. Quais perguntas devem ser respon
 **1.** Qual o impacto causal do imposto de importação 'Taxa das Blusinhas' no emprego formal de estabelecimentos que competem com importações de baixo valor (até US$50)?
 
 <br>
+<br>
+
+---
 
 ### **a. Definição de tratamento e controle**
 
@@ -34,6 +37,9 @@ Aqui estou desenvolvendo as etapas do processo. Quais perguntas devem ser respon
 | Excluído (zona de contaminação) | Grupos 13.1–13.4; 15.1; 15.4; 32.5; demais de 26 e 27 | Fiação, tecelagem e acabamento têxtil; curtimento; partes de calçados; instrumentos médico-odontológicos; demais eletrônicos e elétricos | Setores com exposição ambígua: ou são fornecedores upstream dos tratados (efeito indireto via demanda derivada, violando SUTVA/no-spillover entre grupos), ou misturam consumo e B2B sem separação limpa no CNAE. O guia de DiD recomenda excluir unidades de status ambíguo em vez de forçar sua classificação, preservando a interpretação do parâmetro causal (ATT). |
 
 <br>
+<br>
+
+---
 
 ### **b. Parâmetro-alvo e hipóteses de identificação**
  
@@ -52,7 +58,9 @@ $$ATT(t) = E\left[\,Y_{i,t}(1) - Y_{i,t}(0) \mid D_i = 1\,\right], \quad t \geq 
 Em palavras: quanto o emprego formal dos setores tratados difere, em média, do que teria sido sem a taxa. O desfecho potencial $Y_{i,t}(0)$ nunca é observado para os tratados após 2024: é isso que as hipóteses abaixo permitem reconstruir. Como a RAIS de dez/2024 captura apenas 5 meses de vigência, $ATT(2024)$ é interpretado como efeito de exposição parcial; $ATT(2025)$ é o coeficiente principal (primeiro ano cheio).
 
 <br>
+<br>
 
+---
 
 ### **c. Painel construído (script [`painel_rais.R`](https://github.com/gabidenigris/TCC/blob/c11d83d37785f6cfbef466f41e9b0f94e6fa41ca/script/painel_rais.R))**
  
@@ -69,9 +77,10 @@ Estrutura (exemplo de uma célula tratada e uma de controle):
  
 
 <br>
+<br>
 
-
-## **d. Teste de tendências paralelas (script tendencias_paralelas.R) — EM ANDAMENTO**
+---
+### **d. Teste de tendências paralelas (script tendencias_paralelas.R) — EM ANDAMENTO**
 
 Amostra principal: núcleo tratado vs controle, células com emprego positivo em todos os anos (as cnaes classificadas como "extensiva" vão para robustez).       
 
