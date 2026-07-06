@@ -1,11 +1,9 @@
 # =============================================================
-# 01_painel_did.R (definitivo: base microdados_vinculos)
+# painel_rais.R (definitivo: base microdados_vinculos)
 # Painel UF x CNAE classe (2019-2025) para o DiD da Taxa das Blusinhas
 # Motivo da migracao: em estabelecimentos, o ano-base 2025 veio sem
 # classificacao setorial; em vinculos, a subclasse esta integra.
 # Metricas: vinculos ativos em 31/12 e massa salarial (remuneracao media).
-# Protecoes: janela parametrizada, bypass de cache, tipos integer64,
-# trava de anos antes do complete(), plausibilidade do 2025 preliminar.
 # =============================================================
 
 library(basedosdados)
@@ -24,7 +22,6 @@ anos <- 2019:2025
 #     compativel com o dicionario (classe de 4 digitos + verificador).
 # (c) filtros de prefixo aplicados sobre a subclasse (7 digitos):
 #     2 dig = divisao, 3 = grupo, 4 = classe.
-# (d) tag de versao no comentario invalida o cache do BigQuery.
 query_painel <- sprintf("
 -- v3 vinculos 2025-07
 SELECT
@@ -138,20 +135,14 @@ cat("Painel salvo |", nrow(dados_painel), "linhas |",
     n_distinct(dados_painel$cnae_2), "classes CNAE\n")
 
 
-dados_painel %>% distinct(sigla_uf) %>% print(n = 28)
-
-
 file.exists("painel_did_blusinhas.rds")   # deve retornar TRUE
 
 painel <- readRDS("painel_did_blusinhas.rds")
 glimpse(painel)                            # estrutura: colunas e tipos
 View(painel)                               # abre o visualizador do RStudio
 
-
 library(readr)
 
 # Para Excel em portugues (separador ; e decimal com virgula)
 write_csv2(readRDS("painel_did_blusinhas.rds"), "painel_did_blusinhas.csv")
 
-# Para ferramentas que esperam CSV padrao (separador , e decimal com ponto)
-# write_csv(readRDS("painel_did_blusinhas.rds"), "painel_did_blusinhas.csv")
