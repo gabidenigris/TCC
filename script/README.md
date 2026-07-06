@@ -54,7 +54,7 @@ Em palavras: quanto o emprego formal dos setores tratados difere, em média, do 
 <br>
 
 
-### **c. Painel construído (script `painel_rais.R`)**
+### **c. Painel construído (script [`painel_rais.R`](https://github.com/gabidenigris/TCC/blob/c11d83d37785f6cfbef466f41e9b0f94e6fa41ca/script/painel_rais.R))**
  
 Painel balanceado UF × classe CNAE × ano, agregado em SQL no BigQuery a partir de `microdados_vinculos`. Dimensões: 21.777 linhas, 141 classes CNAE, 27 UFs válidas, 2019 a 2025.
  
@@ -71,7 +71,7 @@ Estrutura (exemplo de uma célula tratada e uma de controle):
 <br>
 
 
-## **d. Teste de tendências paralelas (script 02_tendencias_paralelas.R) — EM ANDAMENTO**
+## **d. Teste de tendências paralelas (script tendencias_paralelas.R) — EM ANDAMENTO**
 
 Amostra principal: núcleo tratado vs controle, células com emprego positivo em todos os anos (as cnaes classificadas como "extensiva" vão para robustez).       
 
