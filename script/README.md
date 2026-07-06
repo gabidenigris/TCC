@@ -13,7 +13,7 @@ Aqui estou desenvolvendo as etapas do processo. Quais perguntas devem ser respon
 → Dados: [RAIS Estabelecimentos](https://basedosdados.org/dataset/3e7c4d58-96ba-448e-b053-d385a829ef00?table=86b69f96-0bfe-45da-833b-6edc9a0af213)      
 → CNAE 2.0: [consulta de grupos](https://concla.ibge.gov.br/busca-online-cnae.html)     
 
-> **Nota de revisão (jul/2026):** o plano original usava a tabela RAIS Estabelecimentos. Na carga do ano-base 2025 dessa tabela, a classificação setorial (CNAE) veio 100% nula, inviabilizando o desenho setorial. A tabela de vínculos está íntegra em todos os anos (2019 a 2025) e passou a ser a base oficial do painel. Vantagem adicional: permite extrair massa salarial na mesma consulta.
+> **Nota de revisão (jul/2026):** o plano original usava a tabela RAIS Estabelecimentos. Na carga do ano-base 2025 dessa tabela, a CNAE veio 100% nula, inviabilizando o desenho setorial. A tabela de vínculos está íntegra em todos os anos (2019 a 2025) e passou a ser a base oficial do painel. Vantagem adicional: permite extrair massa salarial na mesma consulta.
 
 ### Seleção das CNAEs: tratado e controle
 
