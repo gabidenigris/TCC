@@ -1,4 +1,4 @@
-# Metodologia
+# Andamento
 
 Aqui estou desenvolvendo as etapas do processo. Quais perguntas devem ser respondidas e como será o desenho econométrico.
 
