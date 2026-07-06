@@ -37,5 +37,6 @@ TCC/
             
 ```
 
+<br>
 
-Acompanhe o andamento do trabalho AQUI
+### Acompanhe o andamento do trabalho [>>AQUI<<](https://github.com/gabidenigris/TCC/blob/c11d83d37785f6cfbef466f41e9b0f94e6fa41ca/script/README.md)
