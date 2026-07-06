@@ -26,10 +26,9 @@ TCC/
 │    └── Fajgelbaum, et al. (2025) "The Value of de Minimis Imports".pdf
 │
 ├── script
-│    ├── README.md
-|    ├── rais_estabeleciemntos.R
+│    ├── README.md   # (andamento do trabalho)
 |    ├── camex.R
-│    └── did_2x2.R
+│    └── painel_rais.R
 │ 
 ├── output/
 │    ├── grafico_1.png
@@ -38,7 +37,6 @@ TCC/
 │    └── tabela_2.png
 │
 └── data/
-     ├── rais.xlsx
      ├── camex.xlsx
      └── PRC.xlsx
             
