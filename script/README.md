@@ -6,10 +6,14 @@ Aqui estou desenvolvendo as etapas do processo. Quais perguntas devem ser respon
 
 **1.** Qual o impacto causal do imposto de importação 'Taxa das Blusinhas' no emprego formal de estabelecimentos que competem com importações de baixo valor (até US$50)?
 
-### **a.** Definição de tratamento e controle
+<br>
+
+### **a. Definição de tratamento e controle**
 
 → Dados: [RAIS Estabelecimentos](https://basedosdados.org/dataset/3e7c4d58-96ba-448e-b053-d385a829ef00?table=86b69f96-0bfe-45da-833b-6edc9a0af213)      
 → CNAE 2.0: [consulta de grupos](https://concla.ibge.gov.br/busca-online-cnae.html)     
+
+> **Nota de revisão (jul/2026):** o plano original usava a tabela RAIS Estabelecimentos. Na carga do ano-base 2025 dessa tabela, a classificação setorial (CNAE) veio 100% nula, inviabilizando o desenho setorial. A tabela de vínculos está íntegra em todos os anos (2019 a 2025) e passou a ser a base oficial do painel. Vantagem adicional: permite extrair massa salarial na mesma consulta.
 
 ### Seleção das CNAEs: tratado e controle
 
@@ -28,39 +32,52 @@ Aqui estou desenvolvendo as etapas do processo. Quais perguntas devem ser respon
 | Controle | Divisão 22 (exceto classe 22.29) | Fabricação de produtos de borracha e material plástico | Predominantemente insumos e embalagens B2B. A classe 22.29 (artefatos plásticos diversos) é excluída por conter utilidades domésticas de plástico potencialmente compradas em plataformas — evita controle contaminado, que viesaria o estimador. |
 | Controle | Divisão 25 (exceto classes 25.50 e 25.93) | Fabricação de produtos de metal, exceto máquinas | Estruturas metálicas, caldeiraria e forjaria atendem construção e indústria doméstica. Excluem-se 25.50 (armas) por regime regulatório próprio e 25.93 (artefatos de metal para uso doméstico e pessoal — cutelaria, panelas) por sobreposição parcial com o basket de remessas. |
 | Excluído (zona de contaminação) | Grupos 13.1–13.4; 15.1; 15.4; 32.5; demais de 26 e 27 | Fiação, tecelagem e acabamento têxtil; curtimento; partes de calçados; instrumentos médico-odontológicos; demais eletrônicos e elétricos | Setores com exposição ambígua: ou são fornecedores upstream dos tratados (efeito indireto via demanda derivada, violando SUTVA/no-spillover entre grupos), ou misturam consumo e B2B sem separação limpa no CNAE. O guia de DiD recomenda excluir unidades de status ambíguo em vez de forçar sua classificação, preservando a interpretação do parâmetro causal (ATT). |
-| Sensibilidade apenas | Divisões 10 e 24 | Produtos alimentícios (10); metalurgia (24) | Divisão 10: perecíveis fora do canal de remessa, mas sujeita a choques próprios de demanda/commodities. Divisão 24: candidata a controle, porém contaminada por intervenções simultâneas de política comercial no aço em 2024 — choque coincidente que violaria a comparabilidade exigida pelo desenho. Usar apenas como checagem de robustez do grupo de controle. |
 
+<br>
 
-### b. Parâmetro-alvo e hipóteses de identificação
-
-### Unidade e notação
-A unidade de análise é a célula **UF × indústria (CNAE)**, observada anualmente na RAIS (foto de 31/dez), para $t = 2019, \dots, 2025$. 
-
-O tratamento é binário: 
-* $D_i = 1$ se a célula pertence aos setores tratados (competidores das importações de baixo valor);
-* $D_i = 0$ se pertence ao controle. 
-
-A vigência da taxa é **01/08/2024**; logo, a primeira observação pós-tratamento é a RAIS de dezembro/2024, ou seja, $g = 2024$. O desfecho $Y_{i,t}$ é o emprego formal (vínculos ativos).
-
-### Parâmetro-alvo
-O efeito médio do tratamento sobre os tratados em cada ano pós-vigência é definido como:
-
+### **b. Parâmetro-alvo e hipóteses de identificação**
+ 
+#### Unidade e notação
+A unidade de análise é a célula *UF × classe CNAE* (indústria de transformação, 4 dígitos), observada anualmente na RAIS (foto de 31/dez), para $t = 2019, \dots, 2025$.
+O tratamento é binário:
+* $D_i = 1$ se a célula pertence aos setores tratados (produtores domésticos de bens substitutos das importações de baixo valor);
+* $D_i = 0$ se pertence ao controle (setores fora do canal de remessas internacionais).
+A vigência da taxa é *01/08/2024*; logo, a primeira observação pós-tratamento é a RAIS de dezembro/2024, ou seja, $g = 2024$ (coorte única, adoção simultânea). O desfecho $Y_{i,t}$ é o logaritmo do emprego formal (vínculos ativos em 31/12) da célula.
+ 
+#### Parâmetro-alvo
+O efeito médio do tratamento sobre os tratados em cada ano pós-vigência:
+ 
 $$ATT(t) = E\left[\,Y_{i,t}(1) - Y_{i,t}(0) \mid D_i = 1\,\right], \quad t \geq 2024$$
+ 
+Em palavras: quanto o emprego formal dos setores tratados difere, em média, do que teria sido sem a taxa. O desfecho potencial $Y_{i,t}(0)$ nunca é observado para os tratados após 2024: é isso que as hipóteses abaixo permitem reconstruir. Como a RAIS de dez/2024 captura apenas 5 meses de vigência, $ATT(2024)$ é interpretado como efeito de exposição parcial; $ATT(2025)$ é o coeficiente principal (primeiro ano cheio).
 
-Em palavras: quanto o emprego formal dos setores tratados difere, em média, do que teria sido sem a taxa. O desfecho potencial $Y_{i,t}(0)$ nunca é observado para os tratados após 2024 — é isso que as hipóteses abaixo permitem reconstruir.
+<br>
 
-### Hipótese 1 — Não-antecipação (NA)
-A taxa não afeta o emprego antes da vigência: 
 
-$$Y_{i,t} = Y_{i,t}(0) \quad \text{para todo } t < 2024$$
+### **c. Painel construído (script `01_painel_did.R`)**
+ 
+Painel balanceado UF × classe CNAE × ano, agregado em SQL no BigQuery a partir de `microdados_vinculos`. Dimensões: 21.777 linhas, 141 classes CNAE, 27 UFs válidas, 2019 a 2025.
+ 
+Estrutura (exemplo de uma célula tratada e uma de controle):
+ 
+| ano | sigla_uf | cnae_2 | descricao_cnae | grupo | tratado | post | total_vinculos_ativos | massa_salarial | salario_medio |
+|-----|----------|--------|----------------|-------|---------|------|----------------------|----------------|---------------|
+| 2023 | SC | 14126 | Confecção de peças do vestuário | tratado_nucleo | TRUE | FALSE | 48.312 | 112.480.500 | 2.328,10 |
+| 2024 | SC | 14126 | Confecção de peças do vestuário | tratado_nucleo | TRUE | TRUE | 47.905 | 115.210.300 | 2.404,97 |
+| 2023 | SC | 16226 | Fabricação de esquadrias de madeira | controle | FALSE | FALSE | 9.104 | 21.870.400 | 2.402,29 |
+| 2024 | SC | 16226 | Fabricação de esquadrias de madeira | controle | FALSE | TRUE | 9.377 | 22.905.100 | 2.442,69 |
+ 
+<br>
 
-Como o anúncio ocorreu em junho/2024 e a RAIS pré-tratamento mais recente é de dezembro/2023, o desenho acomoda naturalmente eventual antecipação entre anúncio e vigência — ela cai dentro do ano de tratamento, não do pré-período.
+<br>
 
-### Hipótese 2 — Tendências paralelas (PT)
-Na ausência da taxa, o emprego formal dos setores tratados e de controle teria evoluído, em média, da mesma forma:
 
-$$E\left[Y_{i,t}(0) - Y_{i,2023}(0) \mid D_i = 1\right] = E\left[Y_{i,t}(0) - Y_{i,2023}(0) \mid D_i = 0\right], \quad t \geq 2024$$
+## **d. Teste de tendências paralelas (script 02_tendencias_paralelas.R) — EM ANDAMENTO**
 
-As pré-tendências (2019–2023) servem como evidência de falsificação dessa hipótese — não como a hipótese em si.
+Próximos passos
 
-> **Observação de escopo:** O ATT identificado refere-se ao emprego formal (RAIS) e o pós-período efetivo é dez/2024 e dez/2025, já que a alíquota foi zerada em maio/2026.
+- Rodar o event study e avaliar os coeficientes pré (atenção esperada ao ruído de 2020, Covid).
+- Análise de sensibilidade de Rambachan e Roth calibrada pelo maior pré-trend estimado.
+- Robustez: grupo de extensão como tratados, divisões 10 e 24 como controle alternativo, exclusão da Zona Franca de Manaus, placebos em setores não afetados e em datas falsas, margem extensiva via asinh.
+- Primeiro estágio: documentação da queda das importações de remessas (Comex Stat) após agosto de 2024.
+- Variáveis adicionais: massa salarial real (deflacionada pelo IPCA) e salário médio.
