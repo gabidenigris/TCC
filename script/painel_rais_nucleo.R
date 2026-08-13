@@ -147,19 +147,19 @@ dados_painel %>%
   print()
 
 # --- 8. Salvar --------------------------------------------------
-saveRDS(dados_painel, "painel_did_blusinhas.rds")
+saveRDS(dados_painel, "painel_nucleo.rds")
 cat("Painel salvo |", nrow(dados_painel), "linhas |",
     n_distinct(dados_painel$sigla_uf), "UFs |",
     n_distinct(dados_painel$cnae_2), "classes CNAE\n")
 
 
-file.exists("painel_did_blusinhas.rds")   # deve retornar TRUE
+file.exists("painel_nucleo.rds")   # deve retornar TRUE
 
-painel <- readRDS("painel_did_blusinhas.rds")
+painel <- readRDS("painel_nucleo.rds")
 glimpse(painel)                            # estrutura: colunas e tipos
 View(painel)                               # abre o visualizador do RStudio
 
 library(readr)
 
 # Para Excel em portugues (separador ; e decimal com virgula)
-write_csv2(readRDS("painel_did_blusinhas.rds"), "painel_did_blusinhas.csv")
+write_csv2(readRDS("painel_nucleo.rds"), "painel_nucleo.csv")
