@@ -4,6 +4,14 @@
 # Motivo da migracao: em estabelecimentos, o ano-base 2025 veio sem
 # classificacao setorial; em vinculos, a subclasse esta integra.
 # Metricas: vinculos ativos em 31/12 e massa salarial (remuneracao media).
+#
+# ATUALIZACAO (v4): especificacao restrita aos grupos NUCLEO.
+#   Tratado : div 14; grupos 13.5, 15.2, 15.3, 32.1, 32.3, 32.4
+#   Controle: div 31 (moveis), div 21 (farma), div 10 e 11 (alimentos/bebidas)
+# Saem da extracao os grupos de extensao (26.4, 26.52, 27.40, 27.59 no
+# tratado; div 16, 17, 22, 23, 25, 28 no controle) e a div 24.
+# Consequencia: a Zona Franca de Manaus deixa de ser ameaca ativa, pois
+# nenhum CNAE de eletroeletronico permanece no tratado.
 # =============================================================
 
 library(basedosdados)
@@ -22,8 +30,9 @@ anos <- 2019:2025
 #     compativel com o dicionario (classe de 4 digitos + verificador).
 # (c) filtros de prefixo aplicados sobre a subclasse (7 digitos):
 #     2 dig = divisao, 3 = grupo, 4 = classe.
+# (d) a tag de versao no comentario evita cache de resultado antigo.
 query_painel <- sprintf("
--- v3 vinculos 2025-07
+-- v4 nucleos 2026-08
 SELECT
     dados.ano AS ano,
     dados.sigla_uf AS sigla_uf,
@@ -37,18 +46,8 @@ WHERE dados.ano BETWEEN %d AND %d
     -- tratado nucleo: div 14; grupos 13.5, 15.2, 15.3, 32.1, 32.3, 32.4
     dados.cnae_2_subclasse LIKE '14%%'
     OR REGEXP_CONTAINS(dados.cnae_2_subclasse, r'^(135|152|153|321|323|324)')
-    -- tratado extensao: classes 27.40, 27.59, 26.52; grupo 26.4
-    OR REGEXP_CONTAINS(dados.cnae_2_subclasse, r'^(2740|2759|2652|264)')
-    -- controle: div 16, 17, 23, 28; 22 sem 22.29; 25 sem 25.50 e 25.93
-    OR REGEXP_CONTAINS(dados.cnae_2_subclasse, r'^(16|17|23|28)')
-    OR (dados.cnae_2_subclasse LIKE '22%%'
-        AND dados.cnae_2_subclasse NOT LIKE '2229%%')
-    OR (dados.cnae_2_subclasse LIKE '25%%'
-        AND dados.cnae_2_subclasse NOT LIKE '2550%%'
-        AND dados.cnae_2_subclasse NOT LIKE '2593%%')
-    -- sensibilidade: div 10 e 24 (fora da estimacao principal)
-    OR dados.cnae_2_subclasse LIKE '10%%'
-    OR dados.cnae_2_subclasse LIKE '24%%'
+    -- controle nucleo: div 31 (moveis), 21 (farma), 10 (alimentos), 11 (bebidas)
+    OR REGEXP_CONTAINS(dados.cnae_2_subclasse, r'^(31|21|10|11)')
   )
 GROUP BY ano, sigla_uf, cnae_2
 ", min(anos), max(anos))
@@ -81,17 +80,29 @@ dados_painel <- dados_painel %>%
   left_join(dicionario_cnae, by = "cnae_2")
 
 # --- 5. Classificacao de grupos --------------------------------
+# Sem categoria residual: todo CNAE extraido tem regra explicita.
+# alimentos_bebidas fica marcado a parte porque as divisoes 10 e 11 tem
+# ciclo proprio (safra e preco de commodities), e o resultado deve ser
+# reportado com e sem elas.
 dados_painel <- dados_painel %>%
   mutate(
     grupo = case_when(
-      grepl("^14", cnae_2) |
-        grepl("^(135|152|153|321|323|324)", cnae_2) ~ "tratado_nucleo",
-      grepl("^(2740|2759|2652|264)", cnae_2)        ~ "tratado_extensao",
-      grepl("^(10|24)", cnae_2)                     ~ "sensibilidade",
-      TRUE                                          ~ "controle"
+      grepl("^14", cnae_2)                          ~ "tratado_nucleo",
+      grepl("^(135|152|153|321|323|324)", cnae_2)   ~ "tratado_nucleo",
+      grepl("^31", cnae_2)                          ~ "controle_moveis",
+      grepl("^21", cnae_2)                          ~ "controle_farma",
+      grepl("^(10|11)", cnae_2)                     ~ "controle_alimentos",
+      TRUE                                          ~ NA_character_
     ),
-    tratado = grupo %in% c("tratado_nucleo", "tratado_extensao")
+    tratado = grupo == "tratado_nucleo"
   )
+
+# Trava: nenhum CNAE pode escapar da classificacao
+if (any(is.na(dados_painel$grupo))) {
+  stop("CNAEs sem grupo definido: ",
+       paste(unique(dados_painel$cnae_2[is.na(dados_painel$grupo)]),
+             collapse = ", "))
+}
 
 # --- 6. Painel balanceado com zeros verdadeiros ----------------
 # Massa salarial de celula sem vinculo e zero real; salario medio, NA.
@@ -118,7 +129,14 @@ stopifnot(
 # Vinculos por grupo e ano (teste de cheiro)
 dados_painel %>%
   count(grupo, ano, wt = total_vinculos_ativos) %>%
-  print(n = 4 * length(anos))
+  print(n = n_distinct(dados_painel$grupo) * length(anos))
+
+# Tamanho relativo dos grupos: tratado vs controle no ano pre-tratamento
+dados_painel %>%
+  filter(ano == 2023) %>%
+  count(tratado, wt = total_vinculos_ativos) %>%
+  mutate(share = round(100 * n / sum(n), 1)) %>%
+  print()
 
 # Plausibilidade do ano-base 2025 (RAIS preliminar): var. % por grupo
 dados_painel %>%
@@ -145,4 +163,3 @@ library(readr)
 
 # Para Excel em portugues (separador ; e decimal com virgula)
 write_csv2(readRDS("painel_did_blusinhas.rds"), "painel_did_blusinhas.csv")
-
