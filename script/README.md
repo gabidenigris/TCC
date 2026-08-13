@@ -20,7 +20,9 @@ Aqui estou desenvolvendo as etapas do processo. Quais perguntas devem ser respon
 
 ### Seleção das CNAEs: tratado e controle
 
-| Grupo (Tratado/Controle) | CNAE | Descrição | Justificativa |
+**Critério de seleção:** o mapeamento HS é a parte do desenho que vem direto do Fajgelbaum e Khandelwal.
+
+| Grupo Tratado | CNAE | Descrição | Justificativa |
 |---|---|---|---|
 | Tratado (núcleo) | Divisão 14 (completa) | Têxteis e vestuário | Corresponde diretamente aos capítulos HS 50–63 (têxteis e vestuário), que concentram a maior parte das remessas de minimis logo acima do limiar identificadas por Fajgelbaum e Khandelwal, e às descrições de itens do artigo, roupas femininas (vestidos, blusas), roupas masculinas e acessórios. É o setor com concorrência mais direta do canal Shein/Temu. |
 | Tratado (núcleo) | Grupo 13.5 | Fabricação de artefatos têxteis, exceto vestuário (cama, mesa, banho, decoração) | Produz bens têxteis finais de consumo (HS 50–63, itens "home goods" citados no paper), vendidos diretamente ao consumidor e substitutos próximos das remessas. Isolado do restante da Divisão 13, cujos grupos 13.1–13.4 são majoritariamente insumos B2B para a própria Divisão 14. |
@@ -28,13 +30,22 @@ Aqui estou desenvolvendo as etapas do processo. Quais perguntas devem ser respon
 | Tratado (núcleo) | Grupos 32.1, 32.3 e 32.4 | Joalheria e bijuterias (32.1); artefatos para pesca e esporte (32.3); brinquedos e jogos recreativos (32.4) | Correspondem ao capítulo HS 90–99 (miscelânea) e às descrições de itens do paper (colares, acessórios, decoração), além das categorias "sports and outdoors" e brinquedos típicas dessas plataformas. Bens finais de baixo valor unitário, alto grau de substituição com o importado de remessa. |
 | Tratado (extensão/robustez) | Classes 27.40 e 27.59 | Fabricação de lâmpadas e equipamentos de iluminação (27.40); eletrodomésticos portáteis e outros aparelhos de uso doméstico (27.59) | Capítulos HS 84–85 aparecem entre os principais nas remessas, mas fabricam eletrônicos de consumo com bens de capital industriais. Essas classes isolam o segmento efetivamente exposto (pequenos eletroportáteis, iluminação de consumo). Entram como extensão porque a exposição é mais heterogênea que no núcleo têxtil-vestuário. |
 | *Tratado (extensão/robustez) | Grupo 26.4 e classe 26.52 | Equipamentos de áudio/vídeo (26.4); cronômetros e relógios (26.52) | Eletrônicos de consumo e relógios são itens recorrentes nas remessas (HS 84–85 e 91). **Uso condicionado à exclusão de estabelecimentos da Zona Franca de Manaus, cujo regime tributário próprio (e a Lei de Informática) constitui confundidor de política simultânea**, violação potencial da hipótese de "no other shocks" enfatizada no guia de DiD. |
-| Controle | Divisão 16 | Fabricação de produtos de madeira | Atende majoritariamente construção civil e indústria moveleira doméstica; bens volumosos/pesados com custo de frete proibitivo para remessas de até US$ 50. Exposição ao canal de minimis praticamente nula, mas sujeito aos mesmos ciclos macro industriais, favorece a plausibilidade de tendências paralelas. |
-| Controle | Divisão 17 | Fabricação de celulose, papel e produtos de papel | Insumo intermediário e bens de baixa relação valor/peso, inviáveis no canal de remessa internacional. Setor industrial de transformação comparável em estrutura de emprego formal. |
-| Controle | Divisão 23 | Fabricação de produtos de minerais não metálicos (cimento, vidro, cerâmica) | Bens pesados, frágeis ou a granel, atendendo mercado interno (construção). Concorrência via remessa postal é fisicamente inviável; serve de contrafactual para a evolução do emprego industrial formal na ausência do choque. |
-| Controle | Divisão 28 | Fabricação de máquinas e equipamentos | Bens de capital B2B de alto valor unitário, importados (quando importados) pelo canal formal com despacho aduaneiro convencional — exatamente o segmento de HS 84–85 que o paper distingue dos eletrônicos de consumo. Exposição nula ao limiar de US$ 50. |
-| Controle | Divisão 22 (exceto classe 22.29) | Fabricação de produtos de borracha e material plástico | Predominantemente insumos e embalagens B2B. A classe 22.29 (artefatos plásticos diversos) é excluída por conter utilidades domésticas de plástico potencialmente compradas em plataformas — evita controle contaminado, que viesaria o estimador. |
-| Controle | Divisão 25 (exceto classes 25.50 e 25.93) | Fabricação de produtos de metal, exceto máquinas | Estruturas metálicas, caldeiraria e forjaria atendem construção e indústria doméstica. Excluem-se 25.50 (armas) por regime regulatório próprio e 25.93 (artefatos de metal para uso doméstico e pessoal — cutelaria, panelas) por sobreposição parcial com o basket de remessas. |
-| Excluído (zona de contaminação) | Grupos 13.1–13.4; 15.1; 15.4; 32.5; demais de 26 e 27 | Fiação, tecelagem e acabamento têxtil; curtimento; partes de calçados; instrumentos médico-odontológicos; demais eletrônicos e elétricos | Setores com exposição ambígua: ou são fornecedores upstream dos tratados (efeito indireto via demanda derivada, violando SUTVA/no-spillover entre grupos), ou misturam consumo e B2B sem separação limpa no CNAE. O guia de DiD recomenda excluir unidades de status ambíguo em vez de forçar sua classificação, preservando a interpretação do parâmetro causal (ATT). |
+
+<br>
+
+**Critério de seleção:** controle = CNAEs cujo produto mapeia em capítulos HS documentadamente ausentes da cesta de minimis, e que sejam também bens de consumo final e que o frete inviabiliza a importação da remessa. 
+
+| Grupo Controle | CNAE | Descrição | Justificativa |
+|---|---|---|---|
+
+
+| Controle (extensão/robustez) | Divisão 16 | Fabricação de produtos de madeira | Atende majoritariamente construção civil e indústria moveleira doméstica; bens volumosos/pesados com custo de frete proibitivo para remessas de até US$ 50. Exposição ao canal de minimis praticamente nula, mas sujeito aos mesmos ciclos macro industriais, favorece a plausibilidade de tendências paralelas. |
+| Controle (extensão/robustez) | Divisão 17 | Fabricação de celulose, papel e produtos de papel | Insumo intermediário e bens de baixa relação valor/peso, inviáveis no canal de remessa internacional. Setor industrial de transformação comparável em estrutura de emprego formal. |
+| Controle (extensão/robustez) | Divisão 23 | Fabricação de produtos de minerais não metálicos (cimento, vidro, cerâmica) | Bens pesados, frágeis ou a granel, atendendo mercado interno (construção). Concorrência via remessa postal é fisicamente inviável; serve de contrafactual para a evolução do emprego industrial formal na ausência do choque. |
+| Controle (extensão/robustez) | Divisão 28 | Fabricação de máquinas e equipamentos | Bens de capital B2B de alto valor unitário, importados (quando importados) pelo canal formal com despacho aduaneiro convencional — exatamente o segmento de HS 84–85 que o paper distingue dos eletrônicos de consumo. Exposição nula ao limiar de US$ 50. |
+| Controle (extensão/robustez) | Divisão 22 (exceto classe 22.29) | Fabricação de produtos de borracha e material plástico | Predominantemente insumos e embalagens B2B. A classe 22.29 (artefatos plásticos diversos) é excluída por conter utilidades domésticas de plástico potencialmente compradas em plataformas — evita controle contaminado, que viesaria o estimador. |
+| Controle (extensão/robustez) | Divisão 25 (exceto classes 25.50 e 25.93) | Fabricação de produtos de metal, exceto máquinas | Estruturas metálicas, caldeiraria e forjaria atendem construção e indústria doméstica. Excluem-se 25.50 (armas) por regime regulatório próprio e 25.93 (artefatos de metal para uso doméstico e pessoal — cutelaria, panelas) por sobreposição parcial com o basket de remessas. |
+
 
 <br>
 <br>
