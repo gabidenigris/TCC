@@ -20,7 +20,10 @@ Aqui estou desenvolvendo as etapas do processo. Quais perguntas devem ser respon
 
 ### Seleção das CNAEs: tratado e controle
 
-**Critério de seleção (tratado):** CNAE cujo produto final mapeia nos capítulos HS que dominam as remessas de minimis logo acima do limiar em Fajgelbaum e Khandelwal (50 a 63, 64 a 67, 41 a 43, 90 a 99 e o segmento de consumo de 84 a 85), sendo bem final de consumo, de baixo valor unitário e alta relação valor/peso (viável no canal de até US$ 50). Insumos intermediários são excluídos ainda que pertençam aos mesmos capítulos (13.1 a 13.4, 15.1), para não diluir a intensidade do tratamento nem introduzir contaminação via canal de custo.
+### - **Critério de seleção (tratado):** 
+CNAE cujo produto final mapeia nos capítulos HS que dominam as remessas de minimis logo acima do limiar em Fajgelbaum e Khandelwal (50 a 63, 64 a 67, 41 a 43, 90 a 99 e o segmento de consumo de 84 a 85), sendo bem final de consumo, de baixo valor unitário e alta relação valor/peso (viável no canal de até US$ 50). Insumos intermediários são excluídos ainda que pertençam aos mesmos capítulos (13.1 a 13.4, 15.1), para não diluir a intensidade do tratamento nem introduzir contaminação via canal de custo.
+
+<br>
 
 | Grupo Tratado | CNAE | Descrição | Justificativa |
 |---|---|---|---|
@@ -33,12 +36,15 @@ Aqui estou desenvolvendo as etapas do processo. Quais perguntas devem ser respon
 
 <br>
 
-**Como escolhi os controles:** o grupo de controle serve para mostrar o que teria acontecido com o emprego dos setores tratados se a taxa não existisse. Para isso ele precisa de duas coisas ao mesmo tempo, e é comum lembrar só da primeira:
+### - **Critério de seleção (controle):**
+O grupo de controle serve para mostrar o que teria acontecido com o emprego dos setores tratados se a taxa não existisse. Para isso ele precisa de duas coisas ao mesmo tempo, e é comum lembrar só da primeira:
 
 1. **Não ser afetado pela taxa.** O setor não pode fabricar nada que chegue por remessa internacional, seja porque o frete inviabiliza, seja porque a lei proíbe, seja porque vende para empresas e não para o consumidor.
 2. **Subir e descer pelos mesmos motivos que os tratados.** Se o emprego em confecção cresce quando a renda das famílias cresce, o controle também precisa reagir à renda das famílias.
 
 Por isso separei em dois blocos. O **controle principal** reúne setores que fabricam bem de consumo, como os tratados, e por isso acompanham o mesmo ciclo de renda e crédito. O **controle de extensão** reúne setores de insumo e de bens de capital, que atendem o critério 1 mas não o critério 2, e servem para testar se o resultado muda quando troco o grupo de comparação.
+
+<br>
 
 | Grupo Controle | CNAE | Descrição | Justificativa |
 |---|---|---|---|
