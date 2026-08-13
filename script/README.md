@@ -65,28 +65,7 @@ Por isso separei em dois blocos. O **controle principal** reúne setores que fab
 
 ---
 
-### **b. Parâmetro-alvo e hipóteses de identificação**
- 
-#### Unidade e notação
-A unidade de análise é a célula *UF × classe CNAE*, observada anualmente na RAIS (foto de 31/dez), para $t = 2019, \dots, 2025$. (vamos tomar cuidado com os anos da pandemia)
-O tratamento é binário:
-* $D_i = 1$ se a célula pertence aos setores tratados (produtores domésticos de bens substitutos das importações de baixo valor);
-* $D_i = 0$ se pertence ao controle (setores fora do canal de remessas internacionais).
-A vigência da taxa é *01/08/2024*; logo, a primeira observação pós-tratamento é a RAIS de dezembro/2024, ou seja, $g = 2024$ (adoção simultânea). O desfecho $Y_{i,t}$ é o logaritmo do emprego formal (vínculos ativos em 31/12) da célula.   
- 
-#### Parâmetro-alvo
-O efeito médio do tratamento sobre os tratados em cada ano pós-vigência:
- 
-$$ATT(t) = E\left[\,Y_{i,t}(1) - Y_{i,t}(0) \mid D_i = 1\,\right], \quad t \geq 2024$$
- 
-Em palavras: quanto o emprego formal dos setores tratados difere, em média, do que teria sido sem a taxa. O desfecho potencial $Y_{i,t}(0)$ nunca é observado para os tratados após 2024: é isso que as hipóteses abaixo permitem reconstruir. Como a RAIS de dez/2024 captura apenas 5 meses de vigência, $ATT(2024)$ é interpretado como efeito de exposição parcial; $ATT(2025)$ é o coeficiente principal (primeiro ano cheio).
-
-<br>
-<br>
-
----
-
-### **c. Painel construído (script [`painel_rais.R`](https://github.com/gabidenigris/TCC/blob/c11d83d37785f6cfbef466f41e9b0f94e6fa41ca/script/painel_rais.R))**
+### **b. Painel construído (script [`painel_rais.R`](https://github.com/gabidenigris/TCC/blob/c11d83d37785f6cfbef466f41e9b0f94e6fa41ca/script/painel_rais.R))**
  
 Painel balanceado UF × classe CNAE × ano, agregado em SQL no BigQuery a partir de `microdados_vinculos`. Dimensões: 21.777 linhas, 141 classes CNAE, 27 UFs válidas, 2019 a 2025.
  
@@ -104,7 +83,7 @@ Estrutura (exemplo de uma célula tratada e uma de controle):
 <br>
 
 ---
-### **d. Teste de tendências paralelas (script tendencias_paralelas.R) — EM ANDAMENTO**
+### **c. Teste de tendências paralelas (script tendencias_paralelas.R) — EM ANDAMENTO**
 
 Amostra principal: núcleo tratado vs controle, células com emprego positivo em todos os anos (as cnaes classificadas como "extensiva" vão para robustez).       
 
